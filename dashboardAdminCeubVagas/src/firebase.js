@@ -39,6 +39,7 @@ export const checkAdmin = async (userId) => {
       if (isAdmin) {
         return true;
       }
+
       const userDocRef = doc(firestore, 'users', userId);
       const userDocSnapshot = await getDoc(userDocRef);
   
