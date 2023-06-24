@@ -7,6 +7,8 @@ function Dashboard() {
   const [vagas, setVagas] = useState([]);
   const [usuarios, setUsuarios] = useState([]);
   const [novaVaga, setNovaVaga] = useState('');
+  const [locationVaga, setLocationVaga] = useState('');
+
 
   const auth = getAuth();
 
@@ -56,14 +58,21 @@ function Dashboard() {
 
   const handleNovaVagaSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       // Adicionar nova vaga ao banco de dados
       const vagaRef = collection(firestore, 'vagas');
-      await addDoc(vagaRef, { nome: novaVaga });
-
+      await addDoc(vagaRef, {
+        name: novaVaga,
+        location: locationVaga,
+        reservedBy: '',
+        availability: true,
+        isActive: true,
+      });
+  
       // Limpar o campo da nova vaga após a adição
       setNovaVaga('');
+      setLocationVaga('');
     } catch (error) {
       console.error('Erro ao adicionar nova vaga:', error);
     }
@@ -74,7 +83,7 @@ function Dashboard() {
       <h2>Vagas</h2>
       <ul>
         {vagas.map((vaga, index) => (
-          <li key={index}>{vaga.nome}</li>
+          <li key={index}>{vaga.name}</li>
         ))}
       </ul>
 
@@ -91,6 +100,13 @@ function Dashboard() {
           value={novaVaga}
           onChange={(e) => setNovaVaga(e.target.value)}
           placeholder="Nome da nova vaga"
+          required
+        />
+          <input
+          type="text"
+          value={locationVaga}
+          onChange={(e) => setLocationVaga(e.target.value)}
+          placeholder="Localização da vaga"
           required
         />
         <button type="submit">Criar Vaga</button>
