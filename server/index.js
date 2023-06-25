@@ -9,6 +9,6 @@ app.get('/', (req, res) => {
   res.send('Hello, Azure Web App!');
 });
 
-app.listen(3000, () => {
+app.listen(8080, () => {
   console.log('Servidor iniciado na porta 3000');
 });
