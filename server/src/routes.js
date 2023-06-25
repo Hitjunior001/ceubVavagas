@@ -2,6 +2,8 @@ const express = require('express');
 const reservasRouter = require('./routes/reservas');
 const pagamentosRouter = require('./routes/pagamentos');
 
+const router = express.Router();
+
 router.use('/api/reservas', reservasRouter);
 router.use('/api/pagamentos', pagamentosRouter);
 
