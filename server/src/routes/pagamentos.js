@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
     }
   } catch (error) {
     console.error('Erro ao processar o pagamento:', error);
-    res.status(500).json({ message: 'Erro ao processar o pagamento' });
+    res.status(500).json({ message: `Erro ao processar o pagamento: ${error}` });
   }
 });
 
