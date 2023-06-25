@@ -1,13 +1,12 @@
 const express = require('express');
-const app = express();
 const reservasRouter = require('./routes/reservas');
 const pagamentosRouter = require('./routes/pagamentos');
 
-app.use('/api/reservas', reservasRouter);
-app.use('/api/pagamentos', pagamentosRouter);
+router.use('/api/reservas', reservasRouter);
+router.use('/api/pagamentos', pagamentosRouter);
 
-app.get('/', (req, res) => {
-    res.send('Hello, Azure Web App!');
+router.get('/', (req, res) => {
+    res.send('Hello, Azure Web router!');
   });
 
-module.exports = app;
+module.exports = router;
