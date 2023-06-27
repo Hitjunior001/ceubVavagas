@@ -10,7 +10,7 @@ const db = admin.firestore();
 // Defina o endpoint para receber as informações e criar a reserva
 router.post('/', (req, res) => {
   // Obtenha os dados enviados pelo Kotlin a partir do corpo da requisição
-  const { diasAlugadas, dataReserva, userId, vagaId } = req.body;
+  const { diasAlugadas, dataReserva, idUsuario, idVaga } = req.body;
 
   // Crie um documento no Firestore com as informações da reserva
   db.collection('reservas')
