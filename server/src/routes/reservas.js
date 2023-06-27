@@ -13,18 +13,20 @@ router.post('/', (req, res) => {
   const { diasAlugadas, dataReserva, idUsuario, idVaga } = req.body;
   console.log('Dados recebidos:', req.body);
 
+  // Crie um documento no Firestore com as informações da reserva e um ID gerado automaticamente
+  const reservaRef = db.collection('reservas').doc(); // Gera um ID aleatório para o documento
 
-  // Crie um documento no Firestore com as informações da reserva
-  db.collection('reservas')
-    .add({
+  reservaRef
+    .set({
+      idReserva: reservaRef.id, // Atribui o ID gerado ao campo idReserva
       diasAlugadas,
       dataReserva,
       idUsuario,
       idVaga
     })
-    .then((docRef) => {
+    .then(() => {
       // A reserva foi criada com sucesso
-      console.log('Reserva criada:', docRef.id);
+      console.log('Reserva criada:', reservaRef.id);
       res.status(201).json({ message: 'Reserva criada com sucesso' });
     })
     .catch((error) => {
