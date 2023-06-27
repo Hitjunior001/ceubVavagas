@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
- 
+ console.log("Api de pagamento")
 });
 
 // Função para criar a reserva e vincular ao usuário e à vaga
