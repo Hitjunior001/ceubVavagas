@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const admin = require("firebase-admin");
 
 require('dotenv').config();
 
@@ -7,9 +8,9 @@ require('dotenv').config();
 const db = admin.firestore();
 
 // Defina o endpoint para receber as informações e criar a reserva
-router.post('/api/reservas', (req, res) => {
+router.post('/', (req, res) => {
   // Obtenha os dados enviados pelo Kotlin a partir do corpo da requisição
-  const { vagaId, userId, diasAlugadas, dataReserva } = req.body;
+  const { diasAlugadas, dataReserva, userId, vagaId } = req.body;
 
   // Crie um documento no Firestore com as informações da reserva
   db.collection('reservas')
