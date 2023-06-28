@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Dashboard, SignInComponent } from './routes.js';
-import { getCurrentUser, checkAdmin } from '../src/firebase';
+import { getCurrentUser, checkAdmin } from './firebaseStore.js';
 
 import './App.css';
 
@@ -36,7 +36,6 @@ function App() {
           ) : (
             <Route path="/login" element={<SignInComponent />} />
           )}
-          {/* Redireciona para a tela de login se nenhuma rota corresponder */}
           <Route path="/*" element={<Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {getFirestore, collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore';
-import { signOut,getAuth } from 'firebase/auth';
+import { signOut, getAuth } from 'firebase/auth';
 
 
 function Dashboard() {

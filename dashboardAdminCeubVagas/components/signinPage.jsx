@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { signInAdmin } from '../src/firebase';
+import { signInAdmin } from '../src/firebaseStore';
 
 function SignInComponent() {
   const [email, setEmail] = useState('');
