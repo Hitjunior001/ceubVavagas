@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+import {getFirestore, collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { signOut,getAuth } from 'firebase/auth';
 
 
@@ -62,7 +62,7 @@ function Dashboard() {
     try {
       // Adicionar nova vaga ao banco de dados
       const vagaRef = collection(firestore, 'vagas');
-      await addDoc(vagaRef, {
+      const docRef = await addDoc(vagaRef, {
         name: novaVaga,
         location: locationVaga,
         reservedBy: '',
@@ -70,13 +70,22 @@ function Dashboard() {
         isActive: true,
       });
   
+      // Obter o ID do documento recém-criado
+      const docId = docRef.id;
+  
+      // Atualizar o campo idVaga com o ID do documento
+      const vagaDocRef = doc(firestore, 'vagas', docId);
+      await updateDoc(vagaDocRef, {
+        idVaga: docId
+      });
+
       // Limpar o campo da nova vaga após a adição
       setNovaVaga('');
       setLocationVaga('');
     } catch (error) {
       console.error('Erro ao adicionar nova vaga:', error);
     }
-  };
+  }
 
   return (
     <div>
