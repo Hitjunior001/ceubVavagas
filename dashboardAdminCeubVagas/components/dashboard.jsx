@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getVagas } from '../src/firebaseStore';
 import {signOut} from '../src/firebaseAuth';
+import { useNavigate } from "react-router-dom";
+
+
 
 function Dashboard() {
+  const navigate = useNavigate()
   const [vagas, setVagas] = useState([]);
 
   useEffect(() => {
@@ -22,7 +26,8 @@ function Dashboard() {
     try {
       const signedOut = await signOut();
       if (signedOut) {
-        // Redirecionar ou executar outras ações após o logout
+        console.log("Deslogado com sucesso")
+        navigate('/login')
       }
     } catch (error) {
       console.error('Erro ao fazer logout:', error);

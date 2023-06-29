@@ -3,26 +3,25 @@ import { signIn } from '../src/firebaseAuth';
 import { useNavigate } from 'react-router-dom';
 
 function SignInComponent() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // Novo
 
   const handleLogin = async () => {
     try {
       const user = await signIn(email, password);
       if (user) {
         // Usuário autenticado com sucesso
-        console.log('Login bem-sucedido:', user.uid);
-        navigate('/'); // Redireciona para a página inicial (dashboard)
+        console.log("Login bem-sucedido:", user.uid);
+        navigate("/"); // Redireciona para o dashboard
       } else {
         // Falha na autenticação
-        console.log('Credenciais inválidas. Falha na autenticação.');
+        console.log("Credenciais inválidas. Falha na autenticação.");
       }
     } catch (error) {
-      console.error('Erro ao fazer login:', error);
+      console.error("Erro ao fazer login:", error);
     }
   };
-
   return (
     <div>
       <h1>Login</h1>
