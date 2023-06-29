@@ -1,20 +1,22 @@
 import { useState } from 'react';
-import { signInAdmin } from '../src/firebaseStore';
+import { signIn } from '../src/firebaseAuth';
+import { useNavigate } from 'react-router-dom';
 
 function SignInComponent() {
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      const isAdminAuthenticated = await signInAdmin(email, senha);
-
-      if (isAdminAuthenticated) {
-        // Usuário é um administrador
-        console.log('Login bem-sucedido como administrador');
+      const user = await signIn(email, password);
+      if (user) {
+        // Usuário autenticado com sucesso
+        console.log('Login bem-sucedido:', user.uid);
+        navigate('/'); // Redireciona para a página inicial (dashboard)
       } else {
-        // Usuário não é um administrador
-        console.log('Usuário não é um administrador');
+        // Falha na autenticação
+        console.log('Credenciais inválidas. Falha na autenticação.');
       }
     } catch (error) {
       console.error('Erro ao fazer login:', error);
@@ -33,8 +35,8 @@ function SignInComponent() {
       <input
         type="password"
         placeholder="Senha"
-        value={senha}
-        onChange={(e) => setSenha(e.target.value)}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
       <button onClick={handleLogin}>Entrar</button>
     </div>

@@ -1,41 +1,44 @@
-import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Dashboard, SignInComponent } from './routes.js';
-import { getCurrentUser, checkAdmin } from './firebaseStore.js';
+import { initializeFirebase } from './firebase';
+import { getAuthenticatedUserId } from './firebaseAuth';
+import {useEffect, useState} from 'react'
 
 import './App.css';
 
+// Inicializa o Firebase
+initializeFirebase();
+
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [userAuthenticated, setUserAuthenticated] = useState(false);
 
   useEffect(() => {
-    const checkAdminAuthentication = async () => {
-      const currentUser = await getCurrentUser();
-      if (currentUser) {
-        const isAdminAuthenticated = await checkAdmin(currentUser.uid);
-        setIsAuthenticated(isAdminAuthenticated);
-      }
-  
-      setLoading(false);
-    };
-  
-    checkAdminAuthentication();
+    checkUserAuthentication();
+
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>; // Pode exibir um spinner de carregamento enquanto verifica a autenticação
-  }
-
+  const checkUserAuthentication = async () => {
+    try {
+      const userId = await getAuthenticatedUserId();
+      if (userId) {
+        setUserAuthenticated(true);
+        console.log(userAuthenticated)
+      } else {
+        setUserAuthenticated(false);
+      }
+    } catch (error) {
+      setUserAuthenticated(false);
+    }
+  };
   return (
     <div className="container">
       <BrowserRouter>
         <Routes>
-          {isAuthenticated ? (
-            <Route path="/" element={<Dashboard />} />
-          ) : (
-            <Route path="/login" element={<SignInComponent />} />
-          )}
+          <Route
+            path="/"
+            element={userAuthenticated ? <Dashboard/> : <Navigate to="/login" />}
+          />
+          <Route path="/login" element={<SignInComponent />} />
           <Route path="/*" element={<Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>

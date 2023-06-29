@@ -1,7 +1,25 @@
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { initializeFirebase } from './firebase';
+
+// Inicializa o Firebase
+initializeFirebase();
 
 // Obtém a instância do Firebase Authentication
 const auth = getAuth();
+
+// Função para obter o ID do usuário autenticado
+export const getAuthenticatedUserId = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      unsubscribe();
+      if (user) {
+        resolve(user.uid);
+      } else {
+        reject(new Error('Usuário não autenticado'));
+      }
+    });
+  }); 
+};
 
 export const signIn = async (email, password) => {
   try {
