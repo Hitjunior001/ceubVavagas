@@ -1,17 +1,26 @@
-const express = require('express');
-const routes = require('./src/routes');
-const bodyParser = require('body-parser');
-const firebaseAdmin = require('./firebase');
+  const express = require('express');
+  const routes = require('./src/routes');
+  const bodyParser = require('body-parser');
+  const firebaseAdmin = require('./firebase');
+  const cors = require("cors");
 
-const app = express();
-app.use(bodyParser.json());
+  const app = express();
 
-// Agora você pode acessar o Firestore como administrador
-const db = firebaseAdmin.firestore();
+  app.use(
+    cors({
+      origin: "http://localhost:5173",
+      methods: "GET, POST, PUT, DELETE",
+      allowedHeaders: "Content-Type, Authorization",
+    })
+  );
+  app.use(bodyParser.json());
 
-app.use(routes);
+  // Agora você pode acessar o Firestore como administrador
+  const db = firebaseAdmin.firestore();
 
-const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log(`Servidor iniciado na porta ${port}`);
-});
+  app.use(routes);
+
+  const port = process.env.PORT || 8080;
+  app.listen(port, () => {
+    console.log(`Servidor iniciado na porta ${port}`);
+  });

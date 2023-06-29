@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getVagas } from '../src/firebaseStore';
 import {signOut} from '../src/firebaseAuth';
 import { useNavigate } from "react-router-dom";
-
-
-
+import { getAuthenticatedTokenId } from "../src/firebaseAuth.js";
+import axios from 'axios';
+  
 function Dashboard() {
-  const navigate = useNavigate()
   const [vagas, setVagas] = useState([]);
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchVagas();
@@ -18,7 +20,7 @@ function Dashboard() {
       const vagasData = await getVagas();
       setVagas(vagasData);
     } catch (error) {
-      console.error('Erro ao buscar as vagas:', error);
+      console.error("Erro ao buscar as vagas:", error);
     }
   };
 
@@ -26,11 +28,30 @@ function Dashboard() {
     try {
       const signedOut = await signOut();
       if (signedOut) {
-        console.log("Deslogado com sucesso")
         navigate('/login')
       }
     } catch (error) {
-      console.error('Erro ao fazer logout:', error);
+      console.error("Erro ao fazer logout:", error);
+    }
+  };
+
+  const handleCreateVaga = async () => {
+    try {
+    const token = await getAuthenticatedTokenId();
+    const response = await axios.post(
+      "http://localhost:8080/api/vagas/",
+      { name, location },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+      console.log(response.data.message);
+      // Atualize a lista de vagas após criar a vaga com sucesso
+      fetchVagas();
+    } catch (error) {
+      console.error("Erro ao criar a vaga:", error);
     }
   };
 
@@ -48,6 +69,21 @@ function Dashboard() {
           </li>
         ))}
       </ul>
+
+      <h2>Criar Vaga</h2>
+      <input
+        type="text"
+        placeholder="Nome"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Localização"
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+      />
+      <button onClick={handleCreateVaga}>Criar Vaga</button>
     </div>
   );
 }
