@@ -2,50 +2,83 @@
 
 Este repositório contém o código-fonte para um projeto de Dashboard Administrativo desenvolvido com React e Node.js, utilizando o Firebase como banco de dados e autenticação.
 
+## Controle de Versão
+
+| Versão | Data       | Notas                           |
+| ------ | ---------- | ------------------------------- |
+| 1.0.0  | 14/07/2023 | Versão inicial do projeto        |
+
+
+## Tecnologias Utilizadas
+
+- React
+- Node.js
+- Firebase
+
 ## Estrutura do Repositório
 
 O repositório está organizado nas seguintes pastas:
 
 - `dashboardAdminCeubVagas`: Contém o código-fonte do frontend desenvolvido em React usando ViteJS.
-- `SERVER`: Contém o código-fonte do backend desenvolvido em Node.js.
+- `server`: Contém o código-fonte do backend desenvolvido em Node.js.
 
-## dashboardAdminCeubVagas
+## Configuração
 
-A pasta `dashboardAdminCeubVagas` contém o código-fonte do frontend do Dashboard Administrativo. Esta aplicação foi desenvolvida usando o framework React e se conecta ao banco de dados Firebase para exibir dados e permitir a interação com o sistema.
+Antes de executar a aplicação, certifique-se de configurar as variáveis de ambiente necessárias. Você pode criar um arquivo `.env` na raiz do projeto e fornecer as seguintes informações:
 
-### Configuração
+### dashboardAdminCeubVagas
 
-Antes de executar a aplicação React, certifique-se de configurar as variáveis de ambiente necessárias. Você pode criar um arquivo `.env` na raiz da pasta `dashboardAdminCeubVagas`
-### Execução
+API_KEY=your_api_key
+AUTH_DOMAIN=your_auth_domain
+PROJECT_ID=your_project_id
+STORAGE_BUCKET=your_storage_bucket
+MESSAGING_SENDER_ID=your_messaging_sender_id
+APP_ID=your_app_id
+MEASUREMENT_ID=your_measurement_id
 
-Para executar a aplicação React, você pode usar os seguintes comandos:
+### server
 
-cd dashboardAdminCeubVagas.
-npm install ou yarn add .
-npm run dev ou yarn run dev.
+TYPE=your_type
+PROJECT_ID=your_project_id
+PRIVATE_KEY_ID=your_private_key_id
+PRIVATE_KEY=your_private_key
+CLIENT_EMAIL=your_client_email
+CLIENT_ID=your_client_id
+AUTH_URI=your_auth_uri
+TOKEN_URI=your_token_uri
+AUTH_PROVIDER_X509_CERT_URL=your_auth_provider_x509_cert_url
+CLIENT_X509_CERT_URL=your_client_x509_cert_url
+UNIVERSE_DOMAIN=your_universe_domain
 
-Acesse a aplicação no seu navegador em `http://localhost:5173`.
 
-## server
+## Execução
 
-A pasta `server` contém o código-fonte do backend do Dashboard Administrativo. O backend é desenvolvido em Node.js e oferece rotas para acessar o banco de dados Firebase e fornecer APIs para a aplicação React.
+Para executar a aplicação, siga os passos abaixo:
 
-### Configuração
+### frontend
 
-Antes de executar o servidor Node.js, certifique-se de configurar as variáveis de ambiente necessárias. Você pode criar um arquivo `.env` na raiz da pasta `server`
+1. Acesse a pasta `dashboardAdminCeubVagas`:
 
-Acesse a aplicação no seu navegador em `http://localhost:PORT`.
+```shell
+cd dashboardAdminCeubVagas
+Instale as dependências:
 
-### Execução
+npm install ou yarn add
+Inicie a aplicação:
 
-Para executar o servidor Node.js, você pode usar os seguintes comandos:
+npm run dev ou yarn run dev
+Acesse a aplicação no seu navegador em http://localhost:5173.
+backend
+Acesse a pasta server:
 
-cd server.
-npm install ou yarn add .
-npm run dev ou yarn run dev.
+cd server
+Instale as dependências:
 
-O servidor será iniciado e estará ouvindo em `http://localhost:PORT`.
+npm install ou yarn add
+Inicie o servidor:
 
+npm run dev ou yarn run dev
+O servidor será iniciado e estará ouvindo em http://localhost:PORT.
 ## Contribuição
-
 Contribuições são bem-vindas! Se você encontrar algum problema ou tiver alguma sugestão, fique à vontade para abrir uma issue ou enviar um pull request.
+
