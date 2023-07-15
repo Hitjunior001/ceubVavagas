@@ -12,7 +12,7 @@ function SignInComponent() {
       const user = await signIn(email, password);
       if (user) {
         // Usuário autenticado com sucesso
-        console.log("Login bem-sucedido:", user.getIdToken);
+        console.log("Login bem-sucedido:");
         navigate("/"); // Redireciona para o dashboard
       } else {
         // Falha na autenticação
