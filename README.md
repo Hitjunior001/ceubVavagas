@@ -1,6 +1,4 @@
-# ceubVavagas
-
-# Projeto Dashboard Administrativo
+# Projeto ceubVavagas
 
 Este repositório contém o código-fonte para um projeto de Dashboard Administrativo desenvolvido com React e Node.js, utilizando o Firebase como banco de dados e autenticação.
 
