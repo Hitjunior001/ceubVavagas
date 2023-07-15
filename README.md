@@ -4,16 +4,13 @@ Este repositório contém o código-fonte para um projeto de Dashboard Administr
 
 ## Controle de Versão
 
-| Versão | Data       | Notas                           |
-| ------ | ---------- | ------------------------------- |
-| 1.0.0  | 14/07/2023 | Versão inicial do projeto        |
-
+Versão | Data       | Notas
+------ | ---------- | -------------------------------------
+1.0.0  | 14/07/2023 | Versão inicial do projeto
 
 ## Tecnologias Utilizadas
 
-- React
-- Node.js
-- Firebase
+React, Node.js, Firebase
 
 ## Estrutura do Repositório
 
@@ -50,35 +47,13 @@ AUTH_PROVIDER_X509_CERT_URL=your_auth_provider_x509_cert_url
 CLIENT_X509_CERT_URL=your_client_x509_cert_url
 UNIVERSE_DOMAIN=your_universe_domain
 
-
 ## Execução
 
 Para executar a aplicação, siga os passos abaixo:
 
-### frontend
-
-1. Acesse a pasta `dashboardAdminCeubVagas`:
-
 ```shell
-cd dashboardAdminCeubVagas
-Instale as dependências:
+# Frontend
+cd dashboardAdminCeubVagas && npm install && npm run dev
 
-npm install ou yarn add
-Inicie a aplicação:
-
-npm run dev ou yarn run dev
-Acesse a aplicação no seu navegador em http://localhost:5173.
-backend
-Acesse a pasta server:
-
-cd server
-Instale as dependências:
-
-npm install ou yarn add
-Inicie o servidor:
-
-npm run dev ou yarn run dev
-O servidor será iniciado e estará ouvindo em http://localhost:PORT.
-## Contribuição
-Contribuições são bem-vindas! Se você encontrar algum problema ou tiver alguma sugestão, fique à vontade para abrir uma issue ou enviar um pull request.
-
+# Backend
+cd server && npm install && npm run dev
