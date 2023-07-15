@@ -1,9 +1,12 @@
-export const firebaseConfig = {
-  apiKey: "AIzaSyC19OJd681Vj-fyVcjWVsvov53Eu5INkHM",
-  authDomain: "ceub-vagas.firebaseapp.com",
-  projectId: "ceub-vagas",
-  storageBucket: "ceub-vagas.appspot.com",
-  messagingSenderId: "176582801809",
-  appId: "1:176582801809:web:339e7c3db6ca405bfd8230",
-  measurementId: "G-8S6P82Q8Q4",
+const dotenv = require('dotenv');
+dotenv.config();
+
+const firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID,
 };
