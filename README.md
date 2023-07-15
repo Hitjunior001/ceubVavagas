@@ -21,10 +21,10 @@ O repositório está organizado nas seguintes pastas:
 
 ## Configuração
 
-Antes de executar a aplicação, certifique-se de configurar as variáveis de ambiente necessárias. Você pode criar um arquivo `.env` na raiz do projeto e fornecer as seguintes informações:
+Antes de executar a aplicação, certifique-se de configurar as variáveis de ambiente necessárias. Você pode criar um arquivo `.env` na raiz de cada pasta e fornecer as seguintes informações:
 
 ### dashboardAdminCeubVagas
-
+`
 API_KEY=your_api_key
 AUTH_DOMAIN=your_auth_domain
 PROJECT_ID=your_project_id
@@ -32,9 +32,9 @@ STORAGE_BUCKET=your_storage_bucket
 MESSAGING_SENDER_ID=your_messaging_sender_id
 APP_ID=your_app_id
 MEASUREMENT_ID=your_measurement_id
-
+`
 ### server
-
+`
 TYPE=your_type
 PROJECT_ID=your_project_id
 PRIVATE_KEY_ID=your_private_key_id
@@ -46,7 +46,7 @@ TOKEN_URI=your_token_uri
 AUTH_PROVIDER_X509_CERT_URL=your_auth_provider_x509_cert_url
 CLIENT_X509_CERT_URL=your_client_x509_cert_url
 UNIVERSE_DOMAIN=your_universe_domain
-
+`
 ## Execução
 
 Para executar a aplicação, siga os passos abaixo:
@@ -57,3 +57,7 @@ cd dashboardAdminCeubVagas && npm install && npm run dev
 
 # Backend
 cd server && npm install && npm run dev
+```
+
+## Contribuição
+Contribuições são bem-vindas! Se você encontrar algum problema ou tiver alguma sugestão, fique à vontade para abrir uma issue ou enviar um pull request.
