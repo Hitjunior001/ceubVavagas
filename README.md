@@ -17,7 +17,7 @@ A pasta `dashboardAdminCeubVagas` contém o código-fonte do frontend do Dashboa
 
 ### Configuração
 
-Antes de executar a aplicação React, certifique-se de configurar as variáveis de ambiente necessárias. Você pode criar um arquivo `.env` na raiz da pasta `React` e fornecer as seguintes informações:
+Antes de executar a aplicação React, certifique-se de configurar as variáveis de ambiente necessárias. Você pode criar um arquivo `.env` na raiz da pasta `dashboardAdminCeubVagas` e fornecer as seguintes informações:
 
 ### Execução
 
